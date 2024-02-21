@@ -396,6 +396,12 @@ export function setContentType(parent, contentType) {
         parent.querySelector('.chapterSettingsSection').classList.remove('hide');
     }
 
+    if (contentType === 'tvshows' || contentType === 'movies' || contentType === 'musicvideos') {
+        parent.querySelector('.chkEnableVersionGroupingContainer').classList.remove('hide');
+    } else {
+        parent.querySelector('.chkEnableVersionGroupingContainer').classList.add('hide');
+    }
+
     if (contentType === 'tvshows') {
         parent.querySelector('.chkAutomaticallyGroupSeriesContainer').classList.remove('hide');
         parent.querySelector('.fldSeasonZeroDisplayName').classList.remove('hide');
@@ -520,6 +526,7 @@ export function getLibraryOptions(parent) {
         EnableInternetProviders: true,
         SaveLocalMetadata: parent.querySelector('#chkSaveLocal').checked,
         EnableAutomaticSeriesGrouping: parent.querySelector('.chkAutomaticallyGroupSeries').checked,
+        EnableVersionGrouping: parent.querySelector('.chkEnableVersionGrouping').checked,
         PreferredMetadataLanguage: parent.querySelector('#selectLanguage').value,
         MetadataCountryCode: parent.querySelector('#selectCountry').value,
         SeasonZeroDisplayName: parent.querySelector('#txtSeasonZeroName').value,
@@ -581,6 +588,7 @@ export function setLibraryOptions(parent, options) {
     parent.querySelector('.chkExtractChapterImages').checked = options.EnableChapterImageExtraction;
     parent.querySelector('#chkSaveLocal').checked = options.SaveLocalMetadata;
     parent.querySelector('.chkAutomaticallyGroupSeries').checked = options.EnableAutomaticSeriesGrouping;
+    parent.querySelector('.chkEnableVersionGrouping').checked = options.EnableVersionGrouping;
     parent.querySelector('#chkEnableEmbeddedTitles').checked = options.EnableEmbeddedTitles;
     parent.querySelector('.chkEnableEmbeddedExtrasTitlesContainer').classList.toggle('hide', !options.EnableEmbeddedTitles);
     parent.querySelector('#chkEnableEmbeddedExtrasTitles').checked = options.EnableEmbeddedExtrasTitles;
